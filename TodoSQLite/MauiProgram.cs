@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection.Extensions;
-using TodoSQLite.Data;
-using TodoSQLite.Views;
+using pospolsl2024.Data;
+using pospolsl2024.Views;
 
-namespace TodoSQLite;
+namespace pospolsl2024;
 
 public static class MauiProgram
 {
@@ -17,10 +17,9 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
 
-		builder.Services.AddSingleton<TodoListPage>();
-		builder.Services.AddTransient<TodoItemPage>();
-
-		builder.Services.AddSingleton<TodoItemDatabase>();
+        builder.Services.AddTransient<CategoriesPage>();
+		builder.Services.AddTransient<CategoryFormPage>();
+        builder.Services.AddSingleton<PosDatabase>();
 
 		return builder.Build();
 	}

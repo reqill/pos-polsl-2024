@@ -1,4 +1,4 @@
-﻿namespace TodoSQLite;
+﻿namespace pospolsl2024;
 
 public partial class App : Application
 {

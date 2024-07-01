@@ -1,8 +1,8 @@
-﻿namespace TodoSQLite;
+﻿namespace pospolsl2024;
 
 public static class Constants
 {
-    public const string DatabaseFilename = "TodoSQLite.db3";
+    public const string DatabaseFilename = "pospolsl2024.db3";
 
     public const SQLite.SQLiteOpenFlags Flags =
         // open the database in read/write mode

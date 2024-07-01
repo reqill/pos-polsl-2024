@@ -1,12 +1,13 @@
-﻿using TodoSQLite.Views;
+﻿using pospolsl2024.Views;
 
-namespace TodoSQLite;
+namespace pospolsl2024;
 
 public partial class AppShell : Shell
 {
 	public AppShell()
 	{
 		InitializeComponent();
-		Routing.RegisterRoute(nameof(TodoItemPage), typeof(TodoItemPage));
-	}
+        Routing.RegisterRoute(nameof(CategoriesPage), typeof(CategoriesPage));
+		Routing.RegisterRoute(nameof(CategoryFormPage), typeof(CategoryFormPage));
+    }
 }
