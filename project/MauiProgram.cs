@@ -18,7 +18,6 @@ public static class MauiProgram
 			});
 
         builder.Services.AddTransient<CategoriesPage>();
-		builder.Services.AddTransient<CategoryFormPage>();
         builder.Services.AddSingleton<PosDatabase>();
 
 		return builder.Build();
