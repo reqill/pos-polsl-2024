@@ -16,9 +16,24 @@ namespace pospolsl2024.Views
             LoadCategories();
         }
 
+        private async void AddCategory(object sender, EventArgs e)
+        {
+            Category diaryCategory = new Category
+            {
+                category_name = "Sides",
+                category_id = 4,
+                description = "Potatoes, Rice and all that stuff",
+                photo = File.ReadAllBytes("C:\\Users\\amzee\\Source\\Repos\\reqill\\pos-polsl-2024\\project\\Resources\\Images\\sides.jpg")
+            };
+
+            await database.SaveItem(diaryCategory);
+            Categories.Add(diaryCategory);
+        }
+
         private async void LoadCategories()
         {
-            Categories = await database.GetAllItems<Category>(); 
+            Categories = await database.GetAllItems<Category>();
+            System.Diagnostics.Debug.WriteLine(Categories.Count);
             BindingContext = this;
         }
     }
