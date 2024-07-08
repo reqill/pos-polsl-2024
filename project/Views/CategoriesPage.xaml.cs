@@ -36,5 +36,18 @@ namespace pospolsl2024.Views
             Categories = new ObservableCollection<Category>(categoriesList);
             BindingContext = this;
         }
+
+        private async void OnDeleteCategoryButtonClicked(object sender, EventArgs e)
+        {
+            var button = sender as Button;
+            var category = button.BindingContext as Category;
+
+            bool confirmed = await DisplayAlert("Confirm Delete", $"Are you sure you want to delete {category.category_name}?", "Yes", "No");
+            if (confirmed)
+            {
+                await database.DeleteItem(category);
+                Categories.Remove(category);
+            }
+        }
     }
 }

@@ -16,16 +16,25 @@ namespace pospolsl2024.Views
 
         private async void OnAddButtonClicked(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(CategoryNameEntry.Text) || string.IsNullOrWhiteSpace(DescriptionEditor.Text))
+            {
+                await DisplayAlert("Validation Error", "Please fill in both the Category Name and Description.", "OK");
+                return;
+            }
+
             var newCategory = new Category
             {
                 category_name = CategoryNameEntry.Text,
                 description = DescriptionEditor.Text,
-                // Assuming you have a way to set the photo
-                // photo = ... 
             };
 
             await database.SaveItem(newCategory);
             MessagingCenter.Send(this, "AddCategory", newCategory);
+            await Navigation.PopModalAsync();
+        }
+
+        private async void OnBackButtonClicked(object sender, EventArgs e)
+        {
             await Navigation.PopModalAsync();
         }
     }

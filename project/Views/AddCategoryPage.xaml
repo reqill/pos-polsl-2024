@@ -8,5 +8,6 @@
         <Entry x:Name="CategoryNameEntry" Placeholder="Category Name" />
         <Editor x:Name="DescriptionEditor" Placeholder="Description" />
         <Button Text="Add" Clicked="OnAddButtonClicked" />
+        <Button Text="Back" Clicked="OnBackButtonClicked" />
     </VerticalStackLayout>
 </ContentPage>
