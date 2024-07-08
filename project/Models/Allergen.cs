@@ -5,7 +5,7 @@ namespace pospolsl2024.Models;
 
 public class Allergen
 {
-    [PrimaryKey]
+    [PrimaryKey, AutoIncrement]
     public int allergen_id { get; set; }
     public string allergen_name { get; set; }
 

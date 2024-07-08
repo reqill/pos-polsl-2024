@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:pospolsl2024.Models"
+             x:Class="pospolsl2024.Views.CategoriesForm"
+             Title="{Binding Title}">
+    <VerticalStackLayout Padding="20">
+        <Entry Placeholder="Category Name" Text="{Binding CategoryName}"/>
+        <Entry Placeholder="Description" Text="{Binding Description}"/>
+        <Button Text="Save" Clicked="SaveCategory"/>
+        <Button Text="Cancel" Clicked="CancelForm"/>
+    </VerticalStackLayout>
+</ContentPage>

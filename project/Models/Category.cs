@@ -5,7 +5,7 @@ namespace pospolsl2024.Models;
 
 public class Category
 {
-    [PrimaryKey]
+    [PrimaryKey, AutoIncrement]
     public int category_id { get; set; }
     public string category_name { get; set; }
     public string description { get; set; }

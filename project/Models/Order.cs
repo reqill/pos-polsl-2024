@@ -5,7 +5,7 @@ namespace pospolsl2024.Models;
 
 public class Order
 {
-    [PrimaryKey]
+    [PrimaryKey, AutoIncrement]
     public int order_id { get; set; }
     public DateTime order_date { get; set; }
     public decimal total_price { get; set; }

@@ -5,7 +5,7 @@ namespace pospolsl2024.Models;
 
 public class TaxRate
 {
-    [PrimaryKey]
+    [PrimaryKey, AutoIncrement]
     public int tax_id { get; set; }
     public string tax_name { get; set; }
     public decimal tax_rate { get; set; }

@@ -4,16 +4,14 @@
              xmlns:models="clr-namespace:pospolsl2024.Models"
              x:Class="pospolsl2024.Views.CategoriesPage"
              Title="Categories">
-  
-    
+
     <VerticalStackLayout>
-        <Button Text="Categories ADD" Clicked="AddCategory"/>
+        <Button Text="Add Category" Clicked="AddCategory"/>
 
         <ScrollView>
             <CollectionView ItemsSource="{Binding Categories}">
                 <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical" 
-                                    Span="2" />
+                    <GridItemsLayout Orientation="Vertical" Span="2" />
                 </CollectionView.ItemsLayout>
 
                 <CollectionView.ItemTemplate>
@@ -27,25 +25,31 @@
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
 
-                                    <Image Grid.Row="0"
+                                    <!-- 
+                                    <Image 
+                                       Grid.Row="0"
                                        Source="{Binding PhotoImageSource}"
                                        Aspect="AspectFill"
                                        WidthRequest="100"
-                                       HeightRequest="100" />
+                                       HeightRequest="100" 
+                                    />
+                                    -->
 
                                     <Label Grid.Row="1"
                                        Text="{Binding category_name}"
                                        HorizontalTextAlignment="Center"
                                        VerticalTextAlignment="End"
-                                       TextColor="White"
+                                       TextColor="Black"
                                        FontSize="Medium"
                                        FontAttributes="Bold"
                                        BackgroundColor="#80000000" />
 
-                                     <Button Grid.Row="2"
-                                        Text="Add/Edit/Delete"
+                                    <Button Grid.Row="2"
+                                        Text="Edit/Delete"
+                                        Clicked="EditDeleteCategory"
                                         HorizontalOptions="Center"
-                                        VerticalOptions="End" />
+                                        VerticalOptions="End"
+                                        BindingContext="{Binding .}" />
                                 </Grid>
                             </Frame>
                         </Grid>
