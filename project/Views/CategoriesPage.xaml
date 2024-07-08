@@ -38,7 +38,8 @@
                                 <Button Grid.Row="2"
                                         Text="Edit"
                                         HorizontalOptions="Center"
-                                        VerticalOptions="End" />
+                                        VerticalOptions="End"
+                                        Clicked="OnEditCategoryButtonClicked" />
                                 <Button Grid.Row="3"
                                         Text="Delete"
                                         HorizontalOptions="Center"

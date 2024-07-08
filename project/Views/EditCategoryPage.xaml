@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="pospolsl2024.Views.EditCategoryPage"
+             Title="Edit Category">
+
+    <VerticalStackLayout Padding="10">
+        <Button Text="Back" Clicked="OnBackButtonClicked" />
+        <Entry x:Name="CategoryNameEntry" Placeholder="Category Name" Text="{Binding category_name}" />
+        <Editor x:Name="DescriptionEditor" Placeholder="Description" Text="{Binding description}" />
+        <Image Source="{Binding PhotoImageSource}" WidthRequest="100" HeightRequest="100" />
+        <Button Text="Save" Clicked="OnSaveButtonClicked" />
+    </VerticalStackLayout>
+</ContentPage>

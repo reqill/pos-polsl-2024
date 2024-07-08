@@ -22,6 +22,15 @@ namespace pospolsl2024.Views
             {
                 Categories.Add(category);
             });
+            MessagingCenter.Subscribe<EditCategoryPage, Category>(this, "EditCategory", (sender, updatedCategory) =>
+            {
+                var category = Categories.FirstOrDefault(c => c.category_id == updatedCategory.category_id);
+                if (category != null)
+                {
+                    category.category_name = updatedCategory.category_name;
+                    category.description = updatedCategory.description;
+                }
+            });
         }
 
         private async void OnAddCategoryButtonClicked(object sender, EventArgs e)
@@ -48,6 +57,14 @@ namespace pospolsl2024.Views
                 await database.DeleteItem(category);
                 Categories.Remove(category);
             }
+        }
+        private async void OnEditCategoryButtonClicked(object sender, EventArgs e)
+        {
+            var button = sender as Button;
+            var category = button.BindingContext as Category;
+
+            var editCategoryPage = new EditCategoryPage(database, category);
+            await Navigation.PushModalAsync(editCategoryPage);
         }
     }
 }
