@@ -52,6 +52,10 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Images\add.svg" />
+	  <None Remove="Resources\Images\beef.jpg" />
+	  <None Remove="Resources\Images\chicken.jpg" />
+	  <None Remove="Resources\Images\seafood.jpg" />
+	  <None Remove="Resources\Images\sides.jpg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -62,6 +66,18 @@
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Views\ItemsPage.xaml.cs">
+	    <DependentUpon>ItemsPage.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\ItemsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 

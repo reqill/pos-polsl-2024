@@ -11,5 +11,9 @@ namespace pospolsl2024.Views
         {
             await Shell.Current.GoToAsync(nameof(CategoriesPage));
         }
+        private async void OnPOSButtonClicked(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

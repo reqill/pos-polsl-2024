@@ -14,7 +14,9 @@ public class PosDatabase
     async Task Init()
     {
         if (Database is not null)
-            return;
+        {
+        return; 
+        }
 
         Database = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
         await Database.CreateTablesAsync<Employee, Order>(CreateFlags.ImplicitPK | CreateFlags.AllImplicit);

@@ -4,33 +4,54 @@
              xmlns:models="clr-namespace:pospolsl2024.Models"
              x:Class="pospolsl2024.Views.CategoriesPage"
              Title="Categories">
+  
+    
     <VerticalStackLayout>
+        <Button Text="Categories ADD" Clicked="AddCategory"/>
 
-    <ScrollView>
-        <CollectionView ItemsSource="{Binding Categories}">
-            <CollectionView.ItemsLayout>
-                <GridItemsLayout Orientation="Vertical" 
-                                Span="2" />
-            </CollectionView.ItemsLayout>
+        <ScrollView>
+            <CollectionView ItemsSource="{Binding Categories}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" 
+                                    Span="2" />
+                </CollectionView.ItemsLayout>
 
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Grid Padding="10">
-                        <Image Source="{Binding photo}"
-                               Aspect="AspectFill"
-                               WidthRequest="100"
-                               HeightRequest="100" />
-                        <Label Text="{Binding category_name}" 
-                               HorizontalTextAlignment="Center"
-                               VerticalTextAlignment="End"
-                               TextColor="White" 
-                               FontSize="Medium" 
-                               FontAttributes="Bold"
-                               BackgroundColor="#80000000" />
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </ScrollView>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10">
+                            <Frame Grid.Column="0" Margin="10" Padding="10" BackgroundColor="White" CornerRadius="10" HasShadow="True">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <Image Grid.Row="0"
+                                       Source="{Binding PhotoImageSource}"
+                                       Aspect="AspectFill"
+                                       WidthRequest="100"
+                                       HeightRequest="100" />
+
+                                    <Label Grid.Row="1"
+                                       Text="{Binding category_name}"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalTextAlignment="End"
+                                       TextColor="White"
+                                       FontSize="Medium"
+                                       FontAttributes="Bold"
+                                       BackgroundColor="#80000000" />
+
+                                     <Button Grid.Row="2"
+                                        Text="Add/Edit/Delete"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="End" />
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
     </VerticalStackLayout>
 </ContentPage>
