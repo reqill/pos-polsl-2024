@@ -1,6 +1,8 @@
 using Microsoft.Maui.Controls;
-using pospolsl2024.Data; // Replace with your actual namespace
 using pospolsl2024.Models;
+using pospolsl2024.Data;
+using System.Collections.Generic;
+using System.IO;
 
 namespace pospolsl2024.Views
 {
@@ -14,20 +16,18 @@ namespace pospolsl2024.Views
             InitializeComponent();
             database = posDatabase;
             LoadCategories();
+
+            MessagingCenter.Subscribe<AddCategoryPage, Category>(this, "AddCategory", (sender, category) =>
+            {
+                Categories.Add(category);
+                LoadCategories();
+            });
         }
 
-        private async void AddCategory(object sender, EventArgs e)
+        private async void OnAddCategoryButtonClicked(object sender, EventArgs e)
         {
-            Category diaryCategory = new Category
-            {
-                category_name = "Sides",
-                category_id = 4,
-                description = "Potatoes, Rice and all that stuff",
-                photo = File.ReadAllBytes("C:\\Users\\amzee\\Source\\Repos\\reqill\\pos-polsl-2024\\project\\Resources\\Images\\sides.jpg")
-            };
-
-            await database.SaveItem(diaryCategory);
-            Categories.Add(diaryCategory);
+            var addCategoryPage = new AddCategoryPage(database);
+            await Navigation.PushModalAsync(addCategoryPage);
         }
 
         private async void LoadCategories()
