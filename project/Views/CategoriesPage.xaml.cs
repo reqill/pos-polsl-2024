@@ -3,13 +3,14 @@ using pospolsl2024.Models;
 using pospolsl2024.Data;
 using System.Collections.Generic;
 using System.IO;
+using System.Collections.ObjectModel;
 
 namespace pospolsl2024.Views
 {
     public partial class CategoriesPage : ContentPage
     {
         private readonly PosDatabase database;
-        public List<Category> Categories { get; private set; }
+        public ObservableCollection<Category> Categories { get; private set; }
 
         public CategoriesPage(PosDatabase posDatabase)
         {
@@ -20,7 +21,6 @@ namespace pospolsl2024.Views
             MessagingCenter.Subscribe<AddCategoryPage, Category>(this, "AddCategory", (sender, category) =>
             {
                 Categories.Add(category);
-                LoadCategories();
             });
         }
 
@@ -32,8 +32,8 @@ namespace pospolsl2024.Views
 
         private async void LoadCategories()
         {
-            Categories = await database.GetAllItems<Category>();
-            System.Diagnostics.Debug.WriteLine(Categories.Count);
+            var categoriesList = await database.GetAllItems<Category>();
+            Categories = new ObservableCollection<Category>(categoriesList);
             BindingContext = this;
         }
     }

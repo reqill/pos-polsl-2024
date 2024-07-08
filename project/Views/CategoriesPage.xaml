@@ -7,44 +7,42 @@
 
     <VerticalStackLayout>
         <Button Text="Add Category" Clicked="OnAddCategoryButtonClicked"/>
-        <ScrollView>
-            <CollectionView ItemsSource="{Binding Categories}">
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical" Span="2" />
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Padding="10">
-                            <Frame Grid.Column="0" Margin="10" Padding="10" BackgroundColor="White" CornerRadius="10" HasShadow="True">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Image Grid.Row="0"
-                                           Source="{Binding PhotoImageSource}"
-                                           Aspect="AspectFill"
-                                           WidthRequest="100"
-                                           HeightRequest="100" />
-                                    <Label Grid.Row="1"
-                                           Text="{Binding category_name}"
-                                           HorizontalTextAlignment="Center"
-                                           VerticalTextAlignment="End"
-                                           TextColor="White"
-                                           FontSize="Medium"
-                                           FontAttributes="Bold"
-                                           BackgroundColor="#80000000" />
-                                    <Button Grid.Row="2"
-                                            Text="Add/Edit/Delete"
-                                            HorizontalOptions="Center"
-                                            VerticalOptions="End" />
-                                </Grid>
-                            </Frame>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </ScrollView>
+        <CollectionView ItemsSource="{Binding Categories}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" Span="2" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10">
+                        <Frame Grid.Column="0" Margin="10" Padding="10" BackgroundColor="White" CornerRadius="10" HasShadow="True">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Image Grid.Row="0"
+                                       Source="{Binding PhotoImageSource}"
+                                       Aspect="AspectFill"
+                                       WidthRequest="100"
+                                       HeightRequest="100" />
+                                <Label Grid.Row="1"
+                                       Text="{Binding category_name}"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalTextAlignment="End"
+                                       TextColor="White"
+                                       FontSize="Medium"
+                                       FontAttributes="Bold"
+                                       BackgroundColor="#80000000" />
+                                <Button Grid.Row="2"
+                                        Text="Add/Edit/Delete"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="End" />
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </VerticalStackLayout>
 </ContentPage>
