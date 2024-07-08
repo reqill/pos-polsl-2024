@@ -69,25 +69,43 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Views\ItemsPage.xaml.cs">
-	    <DependentUpon>ItemsPage.xaml</DependentUpon>
-	  </Compile>
 	  <Compile Update="Views\AddCategoryPage.xaml.cs">
 	    <DependentUpon>AddCategoryPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\DatabaseNavigationPage.xaml.cs">
+	    <DependentUpon>DatabaseNavigationPage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Views\EditCategoryPage.xaml.cs">
 	    <DependentUpon>EditCategoryPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\AddTaxRatePage.xaml.cs">
+	    <DependentUpon>AddTaxRatePage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\EditTaxRatePage.xaml.cs">
+	    <DependentUpon>EditTaxRatePage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\TaxRatesPage.xaml.cs">
+	    <DependentUpon>TaxRatesPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\ItemsPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	  <MauiXaml Update="Views\AddCategoryPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\DatabaseNavigationPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\EditCategoryPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\AddTaxRatePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\EditTaxRatePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\TaxRatesPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

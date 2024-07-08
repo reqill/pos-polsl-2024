@@ -18,7 +18,9 @@ public static class MauiProgram
 			});
 
         builder.Services.AddTransient<CategoriesPage>();
+		builder.Services.AddTransient<DatabaseNavigationPage>();
         builder.Services.AddSingleton<PosDatabase>();
+		builder.Services.AddTransient<TaxRatesPage>();
 
 		return builder.Build();
 	}

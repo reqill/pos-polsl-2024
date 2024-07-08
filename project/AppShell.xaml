@@ -10,5 +10,4 @@
         Title="Pos"
         ContentTemplate="{DataTemplate views:MainPage}"
         Route="Pos" />
-
 </Shell>

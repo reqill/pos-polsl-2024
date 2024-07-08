@@ -9,7 +9,7 @@ namespace pospolsl2024.Views
 
         private async void OnCategoriesButtonClicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync(nameof(CategoriesPage));
+            await Shell.Current.GoToAsync(nameof(DatabaseNavigationPage));
         }
         private async void OnPOSButtonClicked(object sender, EventArgs e)
         {
