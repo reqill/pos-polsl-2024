@@ -19,7 +19,14 @@ public static class MauiProgram
 
 		builder.Services.AddTransient<CategoriesForm>();
         builder.Services.AddTransient<CategoriesPage>();
-		builder.Services.AddTransient<ItemsPage>();
+		builder.Services.AddTransient<DatabaseTablesPage>();
+		builder.Services.AddTransient<EmployeesPage>();
+		builder.Services.AddTransient<EmployeesForm>();
+		builder.Services.AddTransient<FoodsPage>();
+		builder.Services.AddTransient<AllergensPage>();
+		builder.Services.AddTransient<AllergensForm>();
+		builder.Services.AddTransient<TaxRatesPage>();
+		builder.Services.AddTransient<TaxRatesForm>();
         builder.Services.AddSingleton<PosDatabase>();
 
 		return builder.Build();

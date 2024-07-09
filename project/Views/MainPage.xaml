@@ -6,7 +6,7 @@
 
     <Grid Padding="10" ColumnDefinitions="*,*">
         <Frame Grid.Column="0" Margin="10" Padding="10" BackgroundColor="White" CornerRadius="10" HasShadow="True">
-            <Button Text="Categories" Clicked="OnCategoriesButtonClicked" />
+            <Button Text="Database" Clicked="OnEditDatabaseButtonClicked" />
         </Frame>
         <Frame Grid.Column="1" Margin="10" Padding="10" BackgroundColor="White" CornerRadius="10" HasShadow="True">
             <Button Text="POS" Clicked="OnPOSButtonClicked" />

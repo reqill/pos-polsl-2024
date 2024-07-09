@@ -4,42 +4,32 @@ using System.Runtime.CompilerServices;
 
 namespace pospolsl2024.ViewModels
 {
-    public class CategoryViewModel : INotifyPropertyChanged
+    public class AllergenViewModel : INotifyPropertyChanged
     {
-        private Category _category;
+        private Allergen _allergen;
         private string _validationError;
 
-        public CategoryViewModel(Category category = null)
+        public AllergenViewModel(Allergen allergen = null)
         {
-            _category = category ?? new Category();
+            _allergen = allergen ?? new Allergen();
         }
 
-        public int CategoryId
+        public int AllergenId
         {
-            get => _category.category_id;
+            get => _allergen.allergen_id;
             set
             {
-                _category.category_id = value;
+                _allergen.allergen_id = value;
                 OnPropertyChanged();
             }
         }
 
-        public string CategoryName
+        public string AllergenName
         {
-            get => _category.category_name;
+            get => _allergen.allergen_name;
             set
             {
-                _category.category_name = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string Description
-        {
-            get => _category.description;
-            set
-            {
-                _category.description = value;
+                _allergen.allergen_name = value;
                 OnPropertyChanged();
             }
         }
@@ -63,9 +53,9 @@ namespace pospolsl2024.ViewModels
 
         public bool Validate()
         {
-            if (string.IsNullOrWhiteSpace(CategoryName))
+            if (string.IsNullOrWhiteSpace(AllergenName))
             {
-                ValidationError = "Category Name is required.";
+                ValidationError = "Allergen Name is required.";
                 return false;
             }
 
@@ -73,6 +63,6 @@ namespace pospolsl2024.ViewModels
             return true;
         }
 
-        public Category ToCategory() => _category;
+        public Allergen ToAllergen() => _allergen;
     }
 }

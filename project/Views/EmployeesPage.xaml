@@ -2,14 +2,14 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:pospolsl2024.Models"
-             x:Class="pospolsl2024.Views.CategoriesPage"
-             Title="Categories">
+             x:Class="pospolsl2024.Views.EmployeesPage"
+             Title="Employees">
 
     <VerticalStackLayout>
-        <Button Text="Add Category" Clicked="AddCategory"/>
+        <Button Text="Add Employee" Clicked="AddEmployee"/>
 
         <ScrollView>
-            <CollectionView ItemsSource="{Binding Categories}">
+            <CollectionView ItemsSource="{Binding Employees}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical" Span="2" />
                 </CollectionView.ItemsLayout>
@@ -26,7 +26,7 @@
                                     </Grid.RowDefinitions>
 
                                     <Label Grid.Row="0"
-                                       Text="{Binding category_name}"
+                                       Text="{Binding name}"
                                        HorizontalTextAlignment="Center"
                                        VerticalTextAlignment="End"
                                        TextColor="Black"
@@ -36,14 +36,14 @@
 
                                     <Button Grid.Row="1"
                                         Text="Edit"
-                                        Clicked="EditCategory"
+                                        Clicked="EditEmployee"
                                         HorizontalOptions="Center"
                                         VerticalOptions="End"
                                         BindingContext="{Binding .}" />
-                                    
+
                                     <Button Grid.Row="2"
                                         Text="Delete"
-                                        Clicked="DeleteCategory"
+                                        Clicked="DeleteEmployee"
                                         HorizontalOptions="Center"
                                         VerticalOptions="End"
                                         BindingContext="{Binding .}" />

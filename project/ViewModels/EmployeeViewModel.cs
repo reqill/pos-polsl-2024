@@ -4,42 +4,42 @@ using System.Runtime.CompilerServices;
 
 namespace pospolsl2024.ViewModels
 {
-    public class CategoryViewModel : INotifyPropertyChanged
+    public class EmployeeViewModel : INotifyPropertyChanged
     {
-        private Category _category;
+        private Employee _employee;
         private string _validationError;
 
-        public CategoryViewModel(Category category = null)
+        public EmployeeViewModel(Employee employee = null)
         {
-            _category = category ?? new Category();
+            _employee = employee ?? new Employee();
         }
 
-        public int CategoryId
+        public int EmployeeId
         {
-            get => _category.category_id;
+            get => _employee.employee_id;
             set
             {
-                _category.category_id = value;
+                _employee.employee_id = value;
                 OnPropertyChanged();
             }
         }
 
-        public string CategoryName
+        public string Name
         {
-            get => _category.category_name;
+            get => _employee.name;
             set
             {
-                _category.category_name = value;
+                _employee.name = value;
                 OnPropertyChanged();
             }
         }
 
-        public string Description
+        public string Position
         {
-            get => _category.description;
+            get => _employee.position;
             set
             {
-                _category.description = value;
+                _employee.position = value;
                 OnPropertyChanged();
             }
         }
@@ -61,18 +61,24 @@ namespace pospolsl2024.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        public Employee ToEmployee() => _employee;
+
         public bool Validate()
         {
-            if (string.IsNullOrWhiteSpace(CategoryName))
+            if (string.IsNullOrWhiteSpace(Name))
             {
-                ValidationError = "Category Name is required.";
+                ValidationError = "Name is required.";
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(Position))
+            {
+                ValidationError = "Position is required.";
                 return false;
             }
 
             ValidationError = null;
             return true;
         }
-
-        public Category ToCategory() => _category;
     }
 }

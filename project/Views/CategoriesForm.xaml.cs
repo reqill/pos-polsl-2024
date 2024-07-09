@@ -1,51 +1,56 @@
 using pospolsl2024.Data;
 using pospolsl2024.Models;
 using pospolsl2024.ViewModels;
+using System;
 using System.Diagnostics;
 
-namespace pospolsl2024.Views;
-
-public partial class CategoriesForm : ContentPage
+namespace pospolsl2024.Views
 {
-    private readonly PosDatabase database;
-    public CategoryViewModel CategoryViewModel { get; set; }
-    private bool isNewCategory => CategoryViewModel.CategoryId == 0;
-
-    public string Title => CategoryViewModel.CategoryId == 0 ? "Add Category" : "Edit Category";
-
-    public CategoriesForm(PosDatabase posDatabase, Category existingCategory = null)
+    public partial class CategoriesForm : ContentPage
     {
-        InitializeComponent();
-        database = posDatabase;
+        private readonly PosDatabase database;
+        public CategoryViewModel CategoryViewModel { get; set; }
+        private bool isNewCategory => CategoryViewModel.CategoryId == 0;
 
-        CategoryViewModel = new CategoryViewModel(existingCategory); 
+        public string Title => isNewCategory ? "Add Category" : "Edit Category";
 
-        Debug.WriteLine(existingCategory != null ? $"Editing Category: {existingCategory.category_name}" : "Adding a new Category");
+        public CategoriesForm(PosDatabase posDatabase, Category existingCategory = null)
+        {
+            InitializeComponent();
+            database = posDatabase;
 
-        BindingContext = this;
-        Content.BindingContext = CategoryViewModel;
-    }
+            CategoryViewModel = new CategoryViewModel(existingCategory);
 
-    private async void SaveCategory(object sender, EventArgs e)
-    {
-        var category = CategoryViewModel.ToCategory();
+            Debug.WriteLine(existingCategory != null ? $"Editing Category: {existingCategory.category_name}" : "Adding a new Category");
 
-       if (isNewCategory)
+            BindingContext = this;
+            Content.BindingContext = CategoryViewModel;
+        }
+
+        private async void SaveCategory(object sender, EventArgs e)
+        {
+            if (!CategoryViewModel.Validate())
+                return;
+
+            var category = CategoryViewModel.ToCategory();
+
+            if (isNewCategory)
             {
-              await database.AddItem(category);
+                await database.AddItem(category);
             }
-       else
+            else
             {
-              await database.UpdateItem(category);
+                await database.UpdateItem(category);
             }
 
-        Debug.WriteLine("Category saved successfully");
-        await Navigation.PopAsync();
-    }
+            Debug.WriteLine("Category saved successfully");
+            await Navigation.PopAsync();
+        }
 
-    private async void CancelForm(object sender, EventArgs e)
-    {
-        Debug.WriteLine("Category creation/editing canceled");
-        await Navigation.PopAsync();
+        private async void CancelForm(object sender, EventArgs e)
+        {
+            Debug.WriteLine("Category creation/editing canceled");
+            await Navigation.PopAsync();
+        }
     }
 }

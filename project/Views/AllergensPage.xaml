@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="pospolsl2024.Views.AllergensPage"
+             Title="AllergensPage">
+    <VerticalStackLayout>
+        <Button Text="Add Allergen" Clicked="AddAllergen"/>
+
+        <ScrollView>
+            <CollectionView ItemsSource="{Binding Allergens}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="2" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10">
+                            <Frame Grid.Column="0" Margin="10" Padding="10" BackgroundColor="White" CornerRadius="10" HasShadow="True">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <Label Grid.Row="0"
+                                           Text="{Binding allergen_name}"
+                                           HorizontalTextAlignment="Center"
+                                           VerticalTextAlignment="End"
+                                           TextColor="Black"
+                                           FontSize="Medium"
+                                           FontAttributes="Bold"
+                                           BackgroundColor="#80000000" />
+
+                                    <Button Grid.Row="1"
+                                            Text="Edit"
+                                            Clicked="EditAllergen"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="End"
+                                            BindingContext="{Binding .}" />
+
+                                    <Button Grid.Row="2"
+                                            Text="Delete"
+                                            Clicked="DeleteAllergen"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="End"
+                                            BindingContext="{Binding .}" />
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </ScrollView>
+    </VerticalStackLayout>
+</ContentPage>

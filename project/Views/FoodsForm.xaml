@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="pospolsl2024.Views.FoodsForm"
+             Title="{Binding Title}">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="15" Padding="10">
+            <Entry Text="{Binding FoodName}" Placeholder="Food Name"/>
+            <Editor Text="{Binding Description}" Placeholder="Description"/>
+            <Entry Text="{Binding Price, StringFormat='{0:F2}'}" Keyboard="Numeric" Placeholder="Price"/>
+
+            <Picker Title="Select Category" ItemsSource="{Binding Categories}"
+        ItemDisplayBinding="{Binding category_name}"
+        SelectedItem="{Binding SelectedCategory}"/>
+
+            <Picker Title="Allergens" ItemsSource="{Binding Allergens}"
+        ItemDisplayBinding="{Binding allergen_name}"
+        SelectedItem="{Binding SelectedAllergen}"/>
+
+            <Picker Title="Tax Rates" ItemsSource="{Binding TaxRates}"
+        ItemDisplayBinding="{Binding tax_rate}"
+        SelectedItem="{Binding SelectedTaxRate}"/>
+
+            <Label Text="{Binding ValidationError}" TextColor="Red" 
+       IsVisible="{Binding ValidationError, Converter={StaticResource NullToBoolConverter}}"/>
+
+
+            <Button Text="Save" Clicked="SaveButton_Clicked"/>
+            <Button Text="Cancel" Clicked="CancelButton_Clicked"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

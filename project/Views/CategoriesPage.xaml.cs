@@ -1,6 +1,6 @@
 using pospolsl2024.Data;
 using pospolsl2024.Models;
-using System.Collections.ObjectModel; // Import for observable collection
+using System.Collections.ObjectModel; 
 using System.Diagnostics;
 
 namespace pospolsl2024.Views;
@@ -23,28 +23,27 @@ public partial class CategoriesPage : ContentPage
         await Navigation.PushAsync(new CategoriesForm(database)); 
     }
 
-    private async void EditDeleteCategory(object sender, EventArgs e)
+    private async void EditCategory(object sender, EventArgs e)
     {
         var button = (Button)sender;
         var category = (Category)button.BindingContext;
 
-        string action = await DisplayActionSheet("Choose Action", "Cancel", null, "Edit", "Delete");
+        await Navigation.PushAsync(new CategoriesForm(database, category));
+    }
 
-        if (action == "Edit")
+    private async void DeleteCategory(object sender, EventArgs e)
+    {
+        var button = (Button)sender;
+        var category = (Category)button.BindingContext;
+
+        bool confirmDelete = await DisplayAlert("Confirm Delete",
+                                $"Are you sure you want to delete '{category.category_name}'?",
+                                "Yes", "No");
+        if (confirmDelete)
         {
-            await Navigation.PushAsync(new CategoriesForm(database, category));
-        }
-        else if (action == "Delete")
-        {
-            bool confirmDelete = await DisplayAlert("Confirm Delete",
-                                    $"Are you sure you want to delete '{category.category_name}'?",
-                                    "Yes", "No");
-            if (confirmDelete)
-            {
-                await database.DeleteItem(category);
-                Categories.Remove(category);
-                Debug.WriteLine($"Category '{category.category_name}' deleted.");
-            }
+            await database.DeleteItem(category);
+            Categories.Remove(category);
+            Debug.WriteLine($"Category '{category.category_name}' deleted.");
         }
     }
 

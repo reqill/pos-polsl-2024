@@ -1,13 +1,14 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="pospolsl2024.Views.CategoriesForm"
+             xmlns:models="clr-namespace:pospolsl2024.Models"
+             x:Class="pospolsl2024.Views.EmployeesForm"
              Title="{Binding Title}">
     <VerticalStackLayout Padding="20">
-        <Entry Placeholder="Category Name" Text="{Binding CategoryName}"/>
-        <Entry Placeholder="Description" Text="{Binding Description}"/>
+        <Entry Placeholder="Name" Text="{Binding Name}"/>
+        <Entry Placeholder="Position" Text="{Binding Position}"/>
         <Label Text="{Binding ValidationError}" TextColor="Red" IsVisible="{Binding ValidationError, Converter={StaticResource NullToBoolConverter}}"/>
-        <Button Text="Save" Clicked="SaveCategory"/>
+        <Button Text="Save" Clicked="SaveEmployee"/>
         <Button Text="Cancel" Clicked="CancelForm"/>
     </VerticalStackLayout>
 </ContentPage>

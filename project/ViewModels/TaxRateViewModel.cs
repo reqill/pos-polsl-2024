@@ -4,42 +4,42 @@ using System.Runtime.CompilerServices;
 
 namespace pospolsl2024.ViewModels
 {
-    public class CategoryViewModel : INotifyPropertyChanged
+    public class TaxRateViewModel : INotifyPropertyChanged
     {
-        private Category _category;
+        private TaxRate _taxRate;
         private string _validationError;
 
-        public CategoryViewModel(Category category = null)
+        public TaxRateViewModel(TaxRate taxRate = null)
         {
-            _category = category ?? new Category();
+            _taxRate = taxRate ?? new TaxRate();
         }
 
-        public int CategoryId
+        public int TaxId
         {
-            get => _category.category_id;
+            get => _taxRate.tax_id;
             set
             {
-                _category.category_id = value;
+                _taxRate.tax_id = value;
                 OnPropertyChanged();
             }
         }
 
-        public string CategoryName
+        public string TaxName
         {
-            get => _category.category_name;
+            get => _taxRate.tax_name;
             set
             {
-                _category.category_name = value;
+                _taxRate.tax_name = value;
                 OnPropertyChanged();
             }
         }
 
-        public string Description
+        public decimal TaxRateValue
         {
-            get => _category.description;
+            get => _taxRate.tax_rate;
             set
             {
-                _category.description = value;
+                _taxRate.tax_rate = value;
                 OnPropertyChanged();
             }
         }
@@ -56,16 +56,22 @@ namespace pospolsl2024.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public bool Validate()
         {
-            if (string.IsNullOrWhiteSpace(CategoryName))
+            if (string.IsNullOrWhiteSpace(TaxName))
             {
-                ValidationError = "Category Name is required.";
+                ValidationError = "Tax Name is required.";
+                return false;
+            }
+
+            if (TaxRateValue <= 0 || TaxRateValue > 100)
+            {
+                ValidationError = "Please enter a valid tax rate (1-100%).";
                 return false;
             }
 
@@ -73,6 +79,6 @@ namespace pospolsl2024.ViewModels
             return true;
         }
 
-        public Category ToCategory() => _category;
+        public TaxRate ToTaxRate() => _taxRate;
     }
 }
