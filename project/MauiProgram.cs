@@ -28,6 +28,8 @@ public static class MauiProgram
 		builder.Services.AddTransient<TaxRatesPage>();
 		builder.Services.AddTransient<TaxRatesForm>();
         builder.Services.AddSingleton<PosDatabase>();
+		builder.Services.AddTransient<PickTheEmployee>();
+		builder.Services.AddTransient<OrdersPage>();
 
 		return builder.Build();
 	}

@@ -24,4 +24,21 @@ public class Food
     public List<TaxRate> TaxRates { get; set; }
     [OneToMany(CascadeOperations = CascadeOperation.All)] 
     public List<OrderItem> OrderItems { get; set; }
+    [Ignore]
+    public string AllergensString
+    {
+        get
+        {
+            return string.Join(", ", Allergens?.Select(a => a.allergen_name) ?? new List<string>());
+        }
+    }
+
+    [Ignore]
+    public string TaxRatesString
+    {
+        get
+        {
+            return string.Join(", ", TaxRates?.Select(t => t.tax_name) ?? new List<string>());
+        }
+    }
 }

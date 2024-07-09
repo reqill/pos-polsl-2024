@@ -65,6 +65,15 @@
 	  <Compile Update="Views\FoodsForm.xaml.cs">
 	    <DependentUpon>FoodsForm.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\SelectFoodPage.xaml.cs">
+	    <DependentUpon>SelectFoodPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\OrdersPage.xaml.cs">
+	    <DependentUpon>OrdersPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\PickEmployeePage.xaml.cs">
+	    <DependentUpon>PickEmployeePage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -87,6 +96,15 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\FoodsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\SelectFoodPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\OrdersPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\PickEmployeePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\TaxRatesForm.xaml">

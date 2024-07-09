@@ -1,3 +1,5 @@
+using pospolsl2024.Data;
+
 namespace pospolsl2024.Views
 {
     public partial class MainPage : ContentPage
@@ -13,7 +15,7 @@ namespace pospolsl2024.Views
         }
         private async void OnPOSButtonClicked(object sender, EventArgs e)
         {
-            
+            await Navigation.PushAsync(new PickTheEmployee());
         }
     }
 }
