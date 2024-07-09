@@ -86,6 +86,7 @@ namespace pospolsl2024.ViewModels
                 {
                     _selectedCategory = value;
                     _food.category_id = value?.category_id ?? 0;
+                    _food.Category = value;
                     OnPropertyChanged();
                 }
             }
