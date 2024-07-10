@@ -19,14 +19,7 @@
                             <Label Text="{Binding food_name}" FontSize="Medium" />
                             <Label Text="{Binding description}" FontSize="Small" TextColor="Gray" />
                             <Label Text="{Binding price, StringFormat='Price: {0:C}'}" FontSize="Small" TextColor="Gray" />
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="Allergens: " FontSize="Small" TextColor="Gray" />
-                                <Label Text="{Binding AllergensString}" FontSize="Small" TextColor="Gray" />
-                            </StackLayout>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="Tax: " FontSize="Small" TextColor="Gray" />
-                                <Label Text="{Binding TaxRatesString}" FontSize="Small" TextColor="Gray" />
-                            </StackLayout>
+                            <Label Text="{Binding AllergensString}" FontSize="Small" TextColor="Red" />
                             <Button Text="Add to Order" Clicked="OnAddToOrderClicked" CommandParameter="{Binding .}" />
                         </StackLayout>
                     </Frame>
@@ -41,19 +34,24 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Frame Padding="10" Margin="10" BorderColor="LightGray" CornerRadius="5">
-                        <StackLayout>
-                            <Label Text="{Binding Food.food_name}" FontSize="Medium" />
-                            <Label Text="{Binding Food.description}" FontSize="Small" TextColor="Gray" />
-                            <Label Text="{Binding Food.price, StringFormat='Price: {0:C}'}" FontSize="Small" TextColor="Gray" />
-                            <Label Text="{Binding quantity, StringFormat='Quantity: {0}'}" FontSize="Small" TextColor="Gray" />
-                            <Button Text="Delete" Clicked="OnDeleteOrderItemClicked" CommandParameter="{Binding .}" />
-                        </StackLayout>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="{Binding OrderItem.Food.food_name}" FontSize="Medium" VerticalOptions="Center" Grid.Column="0" />
+                            <Label Text="{Binding Quantity, StringFormat='Quantity: {0}'}" FontSize="Small" TextColor="Gray" VerticalOptions="Center" Grid.Column="1" />
+                            <Button Text="-" Clicked="OnDecreaseQuantityClicked" CommandParameter="{Binding .}" Grid.Column="2" />
+                            <Button Text="+" Clicked="OnIncreaseQuantityClicked" CommandParameter="{Binding .}" Grid.Column="3" />
+                        </Grid>
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
         <Label x:Name="TotalPriceLabel" FontSize="Large" HorizontalOptions="End" VerticalOptions="End" Margin="10" />
-        <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+        <StackLayout Orientation="Horizontal" HorizontalOptions="End" Spacing="10">
             <Button Text="Cancel" Clicked="OnCancelClicked" />
             <Button Text="Accept Order" Clicked="OnAcceptOrderClicked" />
         </StackLayout>
