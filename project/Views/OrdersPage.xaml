@@ -2,27 +2,46 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="pospolsl2024.Views.OrdersPage"
              Title="Orders">
-    <StackLayout>
-        <Label x:Name="EmployeeNameLabel" FontSize="Large" HorizontalOptions="End" VerticalOptions="Start" Margin="10" />
-        <Button Text="Add Food" Clicked="OnAddFoodClicked" />
-        <Label Text="All Orders" FontSize="Large" HorizontalOptions="Center" Margin="10" />
-        <CollectionView x:Name="OrdersCollectionView">
-            <CollectionView.ItemsLayout>
-                <LinearItemsLayout Orientation="Vertical" />
-            </CollectionView.ItemsLayout>
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame Padding="10" Margin="10" BorderColor="LightGray" CornerRadius="5">
-                        <StackLayout>
-                            <Label Text="{Binding order_date, StringFormat='Order Date: {0:MM/dd/yyyy HH:mm}'}" FontSize="Medium" />
-                            <Label Text="{Binding total_price, StringFormat='Total Price: {0:C}'}" FontSize="Small" TextColor="Gray" />
-                            <Label Text="{Binding status}" FontSize="Small" TextColor="Gray" />
-                            <Label Text="{Binding Employee.name, StringFormat='Employee: {0}'}" FontSize="Small" TextColor="Gray" />
-                            <Button Text="Delete" Clicked="OnDeleteOrderClicked" CommandParameter="{Binding .}" />
-                        </StackLayout>
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </StackLayout>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Button Text="Add Order" Clicked="OnAddFoodClicked" Grid.Row="0" Grid.Column="0" Margin="10"/>
+        <Label x:Name="EmployeeNameLabel" FontSize="Large" HorizontalOptions="End" VerticalOptions="Start" Margin="10" Grid.Row="0" Grid.Column="1" />
+        <StackLayout Grid.Row="1" Grid.ColumnSpan="2">
+            <Picker x:Name="StatusPicker" Title="Select Status" SelectedIndexChanged="OnStatusSelected" Margin="10">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>All</x:String>
+                        <x:String>Accepted</x:String>
+                        <x:String>Done</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+            <Label Text="Orders" FontSize="Large" HorizontalOptions="Center" Margin="10" />
+            <CollectionView x:Name="OrdersCollectionView">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="10" Margin="10" BorderColor="LightGray" CornerRadius="5">
+                            <StackLayout>
+                                <Label Text="{Binding order_date, StringFormat='Order Date: {0:MM/dd/yyyy HH:mm}'}" FontSize="Medium" />
+                                <Label Text="{Binding total_price, StringFormat='Total Price: {0:C}'}" FontSize="Small" TextColor="Gray" />
+                                <Label Text="{Binding status}" FontSize="Small" TextColor="Gray" />
+                                <Label Text="{Binding Employee.name, StringFormat='Employee: {0}'}" FontSize="Small" TextColor="Gray" />
+                                <Button Text="Realize" Clicked="OnRealizeOrderClicked" CommandParameter="{Binding .}" />
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </Grid>
 </ContentPage>

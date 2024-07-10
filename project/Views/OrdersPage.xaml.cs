@@ -9,6 +9,7 @@ namespace pospolsl2024.Views
         private readonly PosDatabase _database;
         private readonly Employee _employee;
         public ObservableCollection<Order> Orders { get; set; }
+        private ObservableCollection<Order> _allOrders;
 
         public OrdersPage(Employee employee)
         {
@@ -39,9 +40,10 @@ namespace pospolsl2024.Views
                 {
                     order.Employee = employee;
                 }
-                order.status = "Accepted";
                 Orders.Add(order);
             }
+
+            _allOrders = new ObservableCollection<Order>(Orders);
         }
 
         private async void OnAddFoodClicked(object sender, EventArgs e)
@@ -55,15 +57,32 @@ namespace pospolsl2024.Views
         {
             order.status = "Accepted";
             Orders.Add(order);
+            _allOrders.Add(order);
         }
 
-        private async void OnDeleteOrderClicked(object sender, EventArgs e)
+        private async void OnRealizeOrderClicked(object sender, EventArgs e)
         {
             if ((sender as Button)?.CommandParameter is Order order)
             {
-                Orders.Remove(order);
-                await _database.DeleteItem(order, true);
+                order.status = "Done";
+                await _database.UpdateItem(order);
+                OrdersCollectionView.ItemsSource = null;
+                OrdersCollectionView.ItemsSource = Orders;
             }
+        }
+
+        private void OnStatusSelected(object sender, EventArgs e)
+        {
+            var selectedStatus = StatusPicker.SelectedItem.ToString();
+            if (selectedStatus == "All")
+            {
+                Orders = new ObservableCollection<Order>(_allOrders);
+            }
+            else
+            {
+                Orders = new ObservableCollection<Order>(_allOrders.Where(o => o.status == selectedStatus));
+            }
+            OrdersCollectionView.ItemsSource = Orders;
         }
     }
 }
