@@ -2,15 +2,70 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="pospolsl2024.Views.DatabaseTablesPage"
-             Title="Database Tables">
+             Title="Database Tables"
+             BackgroundColor="#141414">
 
     <ScrollView>
-        <VerticalStackLayout Padding="20">
-            <Button Text="Categories" Clicked="OnCategoriesClicked" />
-            <Button Text="Employees" Clicked="OnEmployeesClicked" />
-            <Button Text="Foods" Clicked="OnFoodsClicked" />
-            <Button Text="Allergens" Clicked="OnAllergensClicked" />
-            <Button Text="Tax Rates" Clicked="OnTaxRatesClicked" />
+        <VerticalStackLayout Padding="20" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+            <Label Text="Choose data to edit"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   TextColor="White"
+                   FontSize="32"
+                   FontAttributes="Bold"
+                   Margin="0,0,0,20" />
+
+            <Grid VerticalOptions="Center" HorizontalOptions="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Frame Grid.Row="0" Grid.Column="0" Style="{StaticResource CardStyle}">
+                    <AbsoluteLayout>
+                        <Label Text="Database table:" Style="{StaticResource AnnotationTextStyle}" AbsoluteLayout.LayoutBounds="0,0,AutoSize,AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional" />
+                        <Label Text="Categories" Style="{StaticResource TitleTextStyle}" AbsoluteLayout.LayoutBounds="0,0.3,AutoSize,AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional" />
+                        <Button Text="Edit" Style="{StaticResource CardButtonStyle}" Clicked="OnCategoriesClicked" AbsoluteLayout.LayoutBounds="1,1,AutoSize,AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional" />
+                    </AbsoluteLayout>
+                </Frame>
+
+                <Frame Grid.Row="0" Grid.Column="1" Style="{StaticResource CardStyle}">
+                    <AbsoluteLayout>
+                        <Label Text="Database table:" Style="{StaticResource AnnotationTextStyle}" AbsoluteLayout.LayoutBounds="0,0,AutoSize,AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional" />
+                        <Label Text="Employees" Style="{StaticResource TitleTextStyle}" AbsoluteLayout.LayoutBounds="0,0.3,AutoSize,AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional" />
+                        <Button Text="Edit" Style="{StaticResource CardButtonStyle}" Clicked="OnEmployeesClicked" AbsoluteLayout.LayoutBounds="1,1,AutoSize,AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional" />
+                    </AbsoluteLayout>
+                </Frame>
+
+                <Frame Grid.Row="0" Grid.Column="2" Style="{StaticResource CardStyle}">
+                    <AbsoluteLayout>
+                        <Label Text="Database table:" Style="{StaticResource AnnotationTextStyle}" AbsoluteLayout.LayoutBounds="0,0,AutoSize,AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional" />
+                        <Label Text="Foods" Style="{StaticResource TitleTextStyle}" AbsoluteLayout.LayoutBounds="0,0.3,AutoSize,AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional" />
+                        <Button Text="Edit" Style="{StaticResource CardButtonStyle}" Clicked="OnFoodsClicked" AbsoluteLayout.LayoutBounds="1,1,AutoSize,AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional" />
+                    </AbsoluteLayout>
+                </Frame>
+
+                <Frame Grid.Row="1" Grid.Column="0" Style="{StaticResource CardStyle}" HorizontalOptions="Center" Margin="0,8,-170,0">
+                    <AbsoluteLayout>
+                        <Label Text="Database table:" Style="{StaticResource AnnotationTextStyle}" AbsoluteLayout.LayoutBounds="0,0,AutoSize,AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional" />
+                        <Label Text="Allergens" Style="{StaticResource TitleTextStyle}" AbsoluteLayout.LayoutBounds="0,0.3,AutoSize,AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional" />
+                        <Button Text="Edit" Style="{StaticResource CardButtonStyle}" Clicked="OnAllergensClicked" AbsoluteLayout.LayoutBounds="1,1,AutoSize,AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional" />
+                    </AbsoluteLayout>
+                </Frame>
+
+                <Frame Grid.Row="1" Grid.Column="2" Style="{StaticResource CardStyle}" HorizontalOptions="Center" Margin="-170,8,0,0">
+                    <AbsoluteLayout>
+                        <Label Text="Database table:" Style="{StaticResource AnnotationTextStyle}" AbsoluteLayout.LayoutBounds="0,0,AutoSize,AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional" />
+                        <Label Text="Tax Rates" Style="{StaticResource TitleTextStyle}" AbsoluteLayout.LayoutBounds="0,0.3,AutoSize,AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional" />
+                        <Button Text="Edit" Style="{StaticResource CardButtonStyle}" Clicked="OnTaxRatesClicked" AbsoluteLayout.LayoutBounds="1,1,AutoSize,AutoSize" AbsoluteLayout.LayoutFlags="PositionProportional" />
+                    </AbsoluteLayout>
+                </Frame>
+            </Grid>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

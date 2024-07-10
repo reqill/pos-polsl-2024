@@ -2,10 +2,7 @@ using pospolsl2024.Data;
 using pospolsl2024.Models;
 using pospolsl2024.ViewModels;
 using System;
-using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace pospolsl2024.Views
 {
@@ -43,14 +40,8 @@ namespace pospolsl2024.Views
                     viewModel.TaxRates.Add(taxRate);
 
                 viewModel.SelectedCategory = viewModel.Categories.FirstOrDefault(c => c.category_id == viewModel.ToFood().category_id);
-                if (viewModel.ToFood().Allergens != null && viewModel.ToFood().Allergens.Any())
-                {
-                    viewModel.SelectedAllergen = viewModel.Allergens.FirstOrDefault(a => a.allergen_id == viewModel.ToFood().Allergens.First().allergen_id);
-                }
-                if (viewModel.ToFood().TaxRates != null && viewModel.ToFood().TaxRates.Any())
-                {
-                    viewModel.SelectedTaxRate = viewModel.TaxRates.FirstOrDefault(t => t.tax_id == viewModel.ToFood().TaxRates.First().tax_id);
-                }
+                viewModel.SelectedAllergen = viewModel.Allergens.FirstOrDefault(a => a.allergen_id == viewModel.ToFood().allergen_id);
+                viewModel.SelectedTaxRate = viewModel.TaxRates.FirstOrDefault(t => t.tax_id == viewModel.ToFood().tax_rate_id);
             }
             catch (Exception ex)
             {
@@ -77,5 +68,6 @@ namespace pospolsl2024.Views
         {
             await Navigation.PopAsync();
         }
+       
     }
 }

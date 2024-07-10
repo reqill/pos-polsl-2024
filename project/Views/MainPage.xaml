@@ -2,14 +2,39 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="pospolsl2024.Views.MainPage"
+             BackgroundColor="#141414"
              Title="Main">
 
-    <Grid Padding="10" ColumnDefinitions="*,*">
-        <Frame Grid.Column="0" Margin="10" Padding="10" BackgroundColor="White" CornerRadius="10" HasShadow="True">
-            <Button Text="Database" Clicked="OnEditDatabaseButtonClicked" />
-        </Frame>
-        <Frame Grid.Column="1" Margin="10" Padding="10" BackgroundColor="White" CornerRadius="10" HasShadow="True">
-            <Button Text="POS" Clicked="OnPOSButtonClicked" />
-        </Frame>
+    <Grid Padding="10" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" ColumnSpacing="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <Label Text="Choose Category"
+               Grid.Row="0"
+               Grid.ColumnSpan="2"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               TextColor="White"
+               FontSize="32"
+               FontAttributes="Bold"
+               Margin="0,0,0,20" />
+
+        <Button Text="Database"
+                Grid.Row="1"
+                Grid.Column="0"
+                Clicked="OnEditDatabaseButtonClicked"
+                Style="{StaticResource TransparentButtonStyle}"/>
+
+        <Button Text="POS"
+                Grid.Row="1"
+                Grid.Column="1"
+                Clicked="OnPOSButtonClicked"
+                 Style="{StaticResource TransparentButtonStyle}" />
     </Grid>
 </ContentPage>

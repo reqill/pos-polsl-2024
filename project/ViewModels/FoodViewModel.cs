@@ -100,7 +100,8 @@ namespace pospolsl2024.ViewModels
                 if (_selectedAllergen != value)
                 {
                     _selectedAllergen = value;
-                    _food.Allergens = new List<Allergen> { value };
+                    _food.allergen_id = value?.allergen_id ?? 0;
+                    _food.Allergen = value;
                     OnPropertyChanged();
                 }
             }
@@ -114,7 +115,8 @@ namespace pospolsl2024.ViewModels
                 if (_selectedTaxRate != value)
                 {
                     _selectedTaxRate = value;
-                    _food.TaxRates = new List<TaxRate> { value };
+                    _food.tax_rate_id = value?.tax_id ?? 0;
+                    _food.TaxRate = value;
                     OnPropertyChanged();
                 }
             }

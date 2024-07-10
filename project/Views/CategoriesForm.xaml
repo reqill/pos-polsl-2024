@@ -2,12 +2,15 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="pospolsl2024.Views.CategoriesForm"
-             Title="{Binding Title}">
-    <VerticalStackLayout Padding="20">
-        <Entry Placeholder="Category Name" Text="{Binding CategoryName}"/>
-        <Entry Placeholder="Description" Text="{Binding Description}"/>
-        <Label Text="{Binding ValidationError}" TextColor="Red" IsVisible="{Binding ValidationError, Converter={StaticResource NullToBoolConverter}}"/>
-        <Button Text="Save" Clicked="SaveCategory"/>
-        <Button Text="Cancel" Clicked="CancelForm"/>
+             Title="{Binding Title}"
+             BackgroundColor="#141414">
+    <VerticalStackLayout Padding="20" Spacing="10">
+        <Entry Placeholder="Category Name" Text="{Binding CategoryName}" Style="{StaticResource EntryStyle}" />
+        <Entry Placeholder="Description" Text="{Binding Description}" Style="{StaticResource EntryStyle}" />
+        <Label Text="{Binding ValidationError}" TextColor="Red" Style="{StaticResource ValidationErrorStyle}" IsVisible="{Binding ValidationError, Converter={StaticResource NullToBoolConverter}}"/>
+        <HorizontalStackLayout Spacing="10"  Margin="0,20,0,0" HorizontalOptions="Center">
+            <Button Text="Save" Style="{StaticResource TransparentButtonStyleFilled}" Clicked="SaveCategory" />
+            <Button Text="Cancel" Style="{StaticResource TransparentButtonStyle}" Clicked="CancelForm" />
+        </HorizontalStackLayout>
     </VerticalStackLayout>
 </ContentPage>

@@ -17,28 +17,15 @@ public class Food
     [ManyToOne]
     public Category Category { get; set; }
 
-    [ManyToMany(typeof(FoodAllergen), CascadeOperations = CascadeOperation.All)] 
-    public List<Allergen> Allergens { get; set; }
+    [ForeignKey(typeof(Allergen))]
+    public int allergen_id { get; set; }
 
-    [ManyToMany(typeof(FoodTaxRate), CascadeOperations = CascadeOperation.All)] 
-    public List<TaxRate> TaxRates { get; set; }
-    [OneToMany(CascadeOperations = CascadeOperation.All)] 
-    public List<OrderItem> OrderItems { get; set; }
-    [Ignore]
-    public string AllergensString
-    {
-        get
-        {
-            return string.Join(", ", Allergens?.Select(a => a.allergen_name) ?? new List<string>());
-        }
-    }
+    [ManyToOne] 
+    public Allergen Allergen { get; set; }
 
-    [Ignore]
-    public string TaxRatesString
-    {
-        get
-        {
-            return string.Join(", ", TaxRates?.Select(t => t.tax_name) ?? new List<string>());
-        }
-    }
+    [ForeignKey(typeof(TaxRate))]
+    public int tax_rate_id { get; set; }
+
+    [ManyToOne] 
+    public TaxRate TaxRate { get; set; }
 }

@@ -3,57 +3,59 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:pospolsl2024.Models"
              x:Class="pospolsl2024.Views.FoodsPage"
-             Title="Foods">
+             Title="Foods"
+             BackgroundColor="#141414">
 
-    <VerticalStackLayout>
-        <Button Text="Add Food" Clicked="AddFood"/>
+    <VerticalStackLayout Padding="20" Spacing="10">
+        <Button Text="Add Food" Clicked="AddFood" Style="{StaticResource TransparentButtonStyle}" HorizontalOptions="Center" />
 
         <ScrollView>
             <CollectionView ItemsSource="{Binding Foods}">
                 <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical" Span="2" />
+                    <GridItemsLayout Orientation="Vertical" Span="3" HorizontalItemSpacing="10" VerticalItemSpacing="10" />
                 </CollectionView.ItemsLayout>
+
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Padding="10">
-                            <Frame Grid.Column="0" Margin="10" Padding="10" BackgroundColor="White" CornerRadius="10" HasShadow="True">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Label Grid.Row="0"
-                                           Text="{Binding food_name}"
-                                           HorizontalTextAlignment="Center"
-                                           VerticalTextAlignment="End"
-                                           TextColor="Black"
-                                           FontSize="Medium"
-                                           FontAttributes="Bold"
-                                           BackgroundColor="#80000000" />
-                                    <Label Grid.Row="1"
-                                           Text="{Binding Category.category_name}"
-                                           HorizontalTextAlignment="Center"
-                                           VerticalTextAlignment="Start"
-                                           TextColor="Black"
-                                           FontSize="Small"
-                                           BackgroundColor="#80000000" />
-                                    <Button Grid.Row="2"
-                                            Text="Edit"
-                                            Clicked="EditFood"
-                                            HorizontalOptions="Center"
-                                            VerticalOptions="End"
-                                            BindingContext="{Binding .}" />
-                                    <Button Grid.Row="3"
-                                            Text="Delete"
-                                            Clicked="DeleteFood"
-                                            HorizontalOptions="Center"
-                                            VerticalOptions="End"
-                                            BindingContext="{Binding .}" />
-                                </Grid>
-                            </Frame>
-                        </Grid>
+                        <Frame Style="{StaticResource CardStyleFlexible}">
+                            <VerticalStackLayout Padding="10" Spacing="10">
+
+                                <VerticalStackLayout VerticalOptions="Start" HorizontalOptions="Start" Spacing="18">
+                                    <Label Text="Food Name:" Style="{StaticResource AnnotationTextStyle}" />
+                                    <Label Text="{Binding food_name}" Style="{StaticResource TitleTextStyle}" />
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout VerticalOptions="Start" HorizontalOptions="Start" Spacing="18">
+                                    <Label Text="Description:" Style="{StaticResource AnnotationTextStyle}" />
+                                    <Label Text="{Binding description}" Style="{StaticResource TitleTextStyle}" />
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout VerticalOptions="Start" HorizontalOptions="Start" Spacing="18">
+                                    <Label Text="Price:" Style="{StaticResource AnnotationTextStyle}" />
+                                    <Label Text="{Binding price, StringFormat='${0:F2}'}" Style="{StaticResource TitleTextStyle}" />
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout VerticalOptions="Start" HorizontalOptions="Start" Spacing="18">
+                                    <Label Text="Category:" Style="{StaticResource AnnotationTextStyle}" />
+                                    <Label Text="{Binding Category.category_name}" Style="{StaticResource TitleTextStyle}" />
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout VerticalOptions="Start" HorizontalOptions="Start" Spacing="18">
+                                    <Label Text="Allergen:" Style="{StaticResource AnnotationTextStyle}" />
+                                    <Label Text="{Binding Allergen.allergen_name}" Style="{StaticResource TitleTextStyle}" />
+                                </VerticalStackLayout>
+
+                                <VerticalStackLayout VerticalOptions="Start" HorizontalOptions="Start" Spacing="18">
+                                    <Label Text="Tax Rate:" Style="{StaticResource AnnotationTextStyle}" />
+                                    <Label Text="{Binding TaxRate.tax_name}" Style="{StaticResource TitleTextStyle}" />
+                                </VerticalStackLayout>
+
+                                <HorizontalStackLayout VerticalOptions="End" HorizontalOptions="End" Spacing="10">
+                                    <Button Text="Delete" Style="{StaticResource CardButtonStyleOutlined}" Clicked="DeleteFood" BindingContext="{Binding .}" />
+                                    <Button Text="Edit" Style="{StaticResource CardButtonStyle}" Clicked="EditFood" BindingContext="{Binding .}" />
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+                        </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

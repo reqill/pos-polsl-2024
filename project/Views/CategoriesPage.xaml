@@ -3,53 +3,38 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:pospolsl2024.Models"
              x:Class="pospolsl2024.Views.CategoriesPage"
-             Title="Categories">
+             Title="Categories"
+             BackgroundColor="#141414">
 
-    <VerticalStackLayout>
-        <Button Text="Add Category" Clicked="AddCategory"/>
+    <VerticalStackLayout Padding="20" Spacing="10">
+        <Button Text="Add Category" Clicked="AddCategory" Style="{StaticResource TransparentButtonStyle}" HorizontalOptions="Center" />
 
         <ScrollView>
             <CollectionView ItemsSource="{Binding Categories}">
                 <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical" Span="2" />
+                    <GridItemsLayout Orientation="Vertical" Span="3" HorizontalItemSpacing="10" VerticalItemSpacing="10" />
                 </CollectionView.ItemsLayout>
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Padding="10">
-                            <Frame Grid.Column="0" Margin="10" Padding="10" BackgroundColor="White" CornerRadius="10" HasShadow="True">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
+                        <Frame Style="{StaticResource CardStyleFlexible}">
+                            <VerticalStackLayout Padding="10" Spacing="10">
+                                <VerticalStackLayout VerticalOptions="Start" HorizontalOptions="Start" Spacing="18">
+                                    <Label Text="Name:" Style="{StaticResource AnnotationTextStyle}" />
+                                    <Label Text="{Binding category_name}" Style="{StaticResource TitleTextStyle}" />
+                                </VerticalStackLayout>
 
-                                    <Label Grid.Row="0"
-                                       Text="{Binding category_name}"
-                                       HorizontalTextAlignment="Center"
-                                       VerticalTextAlignment="End"
-                                       TextColor="Black"
-                                       FontSize="Medium"
-                                       FontAttributes="Bold"
-                                       BackgroundColor="#80000000" />
+                                <VerticalStackLayout VerticalOptions="Start" HorizontalOptions="Start" Spacing="18">
+                                    <Label Text="Description:" Style="{StaticResource AnnotationTextStyle}" />
+                                    <Label Style="{StaticResource TitleTextStyle}" Text="{Binding description}"/>
+                                </VerticalStackLayout>
 
-                                    <Button Grid.Row="1"
-                                        Text="Edit"
-                                        Clicked="EditCategory"
-                                        HorizontalOptions="Center"
-                                        VerticalOptions="End"
-                                        BindingContext="{Binding .}" />
-                                    
-                                    <Button Grid.Row="2"
-                                        Text="Delete"
-                                        Clicked="DeleteCategory"
-                                        HorizontalOptions="Center"
-                                        VerticalOptions="End"
-                                        BindingContext="{Binding .}" />
-                                </Grid>
-                            </Frame>
-                        </Grid>
+                                <HorizontalStackLayout VerticalOptions="End" HorizontalOptions="End" Spacing="10">
+                                    <Button Text="Delete" Style="{StaticResource CardButtonStyleOutlined}" Clicked="DeleteCategory" BindingContext="{Binding .}" />
+                                <Button Text="Edit" Style="{StaticResource CardButtonStyle}" Clicked="EditCategory" BindingContext="{Binding .}" />
+                            </HorizontalStackLayout>
+                            </VerticalStackLayout>
+                        </Frame>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
