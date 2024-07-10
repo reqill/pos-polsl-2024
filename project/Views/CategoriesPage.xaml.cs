@@ -1,15 +1,15 @@
 using pospolsl2024.Data;
-using pospolsl2024.Models;
+using pospolsl2024.Data; // Replace with your actual namespace
 using System.Collections.ObjectModel; 
 using System.Diagnostics;
-
+using pospolsl2024.Data; // Replace with your actual namespace
 namespace pospolsl2024.Views;
 
 public partial class CategoriesPage : ContentPage
 {
     private readonly PosDatabase database;
     public ObservableCollection<Category> Categories { get; private set; } = new ObservableCollection<Category>();
-
+    public partial class CategoriesPage : ContentPage
     public CategoriesPage(PosDatabase posDatabase)
     {
         InitializeComponent();
@@ -17,7 +17,7 @@ public partial class CategoriesPage : ContentPage
         BindingContext = this;
         LoadCategories();
     }
-
+            InitializeComponent();
     private async void AddCategory(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new CategoriesForm(database)); 
@@ -27,7 +27,7 @@ public partial class CategoriesPage : ContentPage
     {
         var button = (Button)sender;
         var category = (Category)button.BindingContext;
-
+                category_id = 4,
         await Navigation.PushAsync(new CategoriesForm(database, category));
     }
 
@@ -69,5 +69,9 @@ public partial class CategoriesPage : ContentPage
     {
         base.OnAppearing();
         LoadCategories();
+            Categories = await database.GetAllItems<Category>();
+            System.Diagnostics.Debug.WriteLine(Categories.Count);
+            BindingContext = this;
+        }
     }
 }

@@ -10,13 +10,13 @@
         <Button Text="Add Tax Rate" Clicked="AddTaxRate" Style="{StaticResource TransparentButtonStyle}" HorizontalOptions="Center" />
 
         <ScrollView>
-            <CollectionView ItemsSource="{Binding TaxRates}">
-                <CollectionView.ItemsLayout>
+        <CollectionView ItemsSource="{Binding TaxRates}">
+            <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical" Span="3" HorizontalItemSpacing="10" VerticalItemSpacing="10" />
-                </CollectionView.ItemsLayout>
+            </CollectionView.ItemsLayout>
 
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
                         <Frame Style="{StaticResource CardStyleFlexible}">
                             <VerticalStackLayout Padding="10" Spacing="10">
 
@@ -36,9 +36,10 @@
                                 </HorizontalStackLayout>
                             </VerticalStackLayout>
                         </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
         </ScrollView>
     </VerticalStackLayout>
 </ContentPage>

@@ -1,3 +1,5 @@
+using Microsoft.Maui.Controls;
+using pospolsl2024.Models;
 using pospolsl2024.Data;
 using pospolsl2024.Models;
 using System.Collections.ObjectModel;
@@ -18,6 +20,21 @@ namespace pospolsl2024.Views
             database = posDatabase;
             BindingContext = this;
             LoadTaxRates();
+
+            MessagingCenter.Subscribe<AddTaxRatePage, TaxRate>(this, "AddTaxRate", (sender, taxRate) =>
+            {
+                TaxRates.Add(taxRate);
+            });
+
+            MessagingCenter.Subscribe<EditTaxRatePage, TaxRate>(this, "EditTaxRate", (sender, updatedTaxRate) =>
+            {
+                var taxRate = TaxRates.FirstOrDefault(t => t.tax_id == updatedTaxRate.tax_id);
+                if (taxRate != null)
+                {
+                    taxRate.tax_name = updatedTaxRate.tax_name;
+                    taxRate.tax_rate = updatedTaxRate.tax_rate;
+                }
+            });
         }
 
         private async void AddTaxRate(object sender, EventArgs e)

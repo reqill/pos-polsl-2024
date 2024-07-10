@@ -39,5 +39,17 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </ScrollView>
+            </CollectionView>
+        </ScrollView>
+            </CollectionView>
+        </ScrollView>
+            </CollectionView>
+        </ScrollView>
+            </CollectionView>
+        </ScrollView>
+            </CollectionView>
+        </ScrollView>
+            </CollectionView>
+        </ScrollView>
     </VerticalStackLayout>
 </ContentPage>
