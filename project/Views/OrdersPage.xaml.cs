@@ -65,10 +65,31 @@ namespace pospolsl2024.Views
             if ((sender as Button)?.CommandParameter is Order order)
             {
                 order.status = "Done";
-                await _database.UpdateItem(order);
-                OrdersCollectionView.ItemsSource = null;
+                await _database.UpdateItem(order); // Update the order status in the database
+                OrdersCollectionView.ItemsSource = null; // Refresh the CollectionView
                 OrdersCollectionView.ItemsSource = Orders;
             }
+        }
+
+        private async void OnEditOrderClicked(object sender, EventArgs e)
+        {
+            if ((sender as Button)?.CommandParameter is Order order)
+            {
+                var selectFoodPage = new SelectFoodPage(_employee, order);
+                selectFoodPage.OrderAccepted += OnOrderEdited;
+                await Navigation.PushModalAsync(selectFoodPage);
+            }
+        }
+
+        private void OnOrderEdited(object sender, Order order)
+        {
+            var existingOrder = Orders.FirstOrDefault(o => o.order_id == order.order_id);
+            if (existingOrder != null)
+            {
+                Orders.Remove(existingOrder);
+                Orders.Add(order);
+            }
+            _allOrders = new ObservableCollection<Order>(Orders);
         }
 
         private void OnStatusSelected(object sender, EventArgs e)
