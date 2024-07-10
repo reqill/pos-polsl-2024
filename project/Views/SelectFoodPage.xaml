@@ -19,6 +19,7 @@
                             <Label Text="{Binding food_name}" FontSize="Medium" />
                             <Label Text="{Binding description}" FontSize="Small" TextColor="Gray" />
                             <Label Text="{Binding price, StringFormat='Price: {0:C}'}" FontSize="Small" TextColor="Gray" />
+                            <Label Text="{Binding AllergensString}" FontSize="Small" TextColor="Red" />
                             <Button Text="Add to Order" Clicked="OnAddToOrderClicked" CommandParameter="{Binding .}" />
                         </StackLayout>
                     </Frame>
