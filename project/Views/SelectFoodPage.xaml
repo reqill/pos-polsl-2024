@@ -1,59 +1,73 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="pospolsl2024.Views.SelectFoodPage"
+             BackgroundColor="#141414"
              Title="Select Food">
-    <StackLayout>
-        <Picker x:Name="CategoryPicker" Title="Select Category" SelectedIndexChanged="OnCategorySelected">
-            <Picker.ItemDisplayBinding>
-                <Binding Path="category_name" />
-            </Picker.ItemDisplayBinding>
-        </Picker>
-        <CollectionView x:Name="FoodCollectionView" SelectionMode="Single">
-            <CollectionView.ItemsLayout>
-                <LinearItemsLayout Orientation="Vertical" />
-            </CollectionView.ItemsLayout>
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame Padding="10" Margin="10" BorderColor="LightGray" CornerRadius="5">
-                        <StackLayout>
-                            <Label Text="{Binding food_name}" FontSize="Medium" />
-                            <Label Text="{Binding description}" FontSize="Small" TextColor="Gray" />
-                            <Label Text="{Binding price, StringFormat='Price: {0:C}'}" FontSize="Small" TextColor="Gray" />
-                            <Label Text="{Binding AllergensString}" FontSize="Small" TextColor="Red" />
-                            <Button Text="Add to Order" Clicked="OnAddToOrderClicked" CommandParameter="{Binding .}" />
-                        </StackLayout>
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-        <Label Text="Order Summary" FontSize="Large" HorizontalOptions="Center" Margin="10" />
-        <CollectionView x:Name="OrderSummaryCollectionView">
-            <CollectionView.ItemsLayout>
-                <LinearItemsLayout Orientation="Vertical" />
-            </CollectionView.ItemsLayout>
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame Padding="10" Margin="10" BorderColor="LightGray" CornerRadius="5">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Label Text="{Binding OrderItem.Food.food_name}" FontSize="Medium" VerticalOptions="Center" Grid.Column="0" />
-                            <Label Text="{Binding Quantity, StringFormat='Quantity: {0}'}" FontSize="Small" TextColor="Gray" VerticalOptions="Center" Grid.Column="1" />
-                            <Button Text="-" Clicked="OnDecreaseQuantityClicked" CommandParameter="{Binding .}" Grid.Column="2" />
-                            <Button Text="+" Clicked="OnIncreaseQuantityClicked" CommandParameter="{Binding .}" Grid.Column="3" />
-                        </Grid>
-                    </Frame>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-        <Label x:Name="TotalPriceLabel" FontSize="Large" HorizontalOptions="End" VerticalOptions="End" Margin="10" />
-        <StackLayout Orientation="Horizontal" HorizontalOptions="End" Spacing="10">
-            <Button Text="Cancel" Clicked="OnCancelClicked" />
-            <Button Text="Accept Order" Clicked="OnAcceptOrderClicked" />
+    <Grid Padding="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <StackLayout Grid.Row="1" Grid.ColumnSpan="2">
+            <Picker Style="{StaticResource PickerStyle}" x:Name="CategoryPicker" Title="Select Category" SelectedIndexChanged="OnCategorySelected">
+                <Picker.ItemDisplayBinding>
+                    <Binding Path="category_name" />
+                </Picker.ItemDisplayBinding>
+            </Picker>
+            <Label Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,0,10"/> 
+            <CollectionView x:Name="FoodCollectionView">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="3" HorizontalItemSpacing="10" VerticalItemSpacing="10"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Style="{StaticResource CardStyleFlexible}">
+                            <VerticalStackLayout Spacing="5" Padding="5">
+                                <Label Text="{Binding food_name}" FontSize="Medium" />
+                                <Label Text="{Binding description}" FontSize="Small" TextColor="Gray" />
+                                <Label Text="{Binding price, StringFormat='Price: {0:C}'}" FontSize="Small" TextColor="Gray" />
+                                <Label Text="{Binding AllergensString}" FontSize="Small" TextColor="Red" />
+                                <HorizontalStackLayout VerticalOptions="End" HorizontalOptions="End" Spacing="2">
+                                    <Button Style="{StaticResource TransparentButtonStyleFilled}" Text="Add to Order" Clicked="OnAddToOrderClicked" CommandParameter="{Binding .}" />
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Label Text="Order Summary" Grid.Row="0" Grid.ColumnSpan="2" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" FontSize="32" FontAttributes="Bold" Margin="0,0,0,20" />
+            <CollectionView x:Name="OrderSummaryCollectionView">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="5"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Style="{StaticResource CardStyleFlexible}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding OrderItem.Food.food_name}" FontSize="Medium" VerticalOptions="Center" Grid.Column="0" />
+                                <Label Margin="0,0,20,0" Text="{Binding Quantity, StringFormat='Quantity: {0}'}" FontSize="Small" TextColor="Gray" VerticalOptions="Center" Grid.Column="1" />
+                                <Button Style="{StaticResource TransparentButtonStyle}" Text="-" Clicked="OnDecreaseQuantityClicked" CommandParameter="{Binding .}" Grid.Column="2" Margin="0,0,20,0"/>
+                                <Button Style="{StaticResource TransparentButtonStyle}" Text="+" Clicked="OnIncreaseQuantityClicked" CommandParameter="{Binding .}" Grid.Column="3" Margin="0,0,20,0"/>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Label x:Name="TotalPriceLabel" FontSize="Large" HorizontalOptions="End" VerticalOptions="End" Margin="10" />
+            <StackLayout Orientation="Horizontal" HorizontalOptions="End" Spacing="10">
+                <Button Style="{StaticResource TransparentButtonStyle}" Text="Cancel" Clicked="OnCancelClicked" />
+                <Button Style="{StaticResource TransparentButtonStyleFilled}" Text="Accept Order" Clicked="OnAcceptOrderClicked" />
+            </StackLayout>
         </StackLayout>
-    </StackLayout>
+    </Grid>
 </ContentPage>
